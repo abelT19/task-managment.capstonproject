@@ -12,20 +12,19 @@ class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    # 🔍 Filtering & Sorting
+    
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_fields = ['status', 'priority', 'due_date']
     ordering_fields = ['due_date', 'priority']
     ordering = ['due_date']
 
     def get_queryset(self):
-        # 🔐 Task ownership enforced
         return Task.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    # ✅ Mark task as completed
+
     @action(detail=True, methods=['post'])
     def complete(self, request, pk=None):
         task = self.get_object()
@@ -37,7 +36,7 @@ class TaskViewSet(viewsets.ModelViewSet):
             status=status.HTTP_200_OK
         )
 
-    # 🔄 Mark task as incomplete
+    
     @action(detail=True, methods=['post'])
     def incomplete(self, request, pk=None):
         task = self.get_object()
@@ -48,3 +47,4 @@ class TaskViewSet(viewsets.ModelViewSet):
             {'message': 'Task reverted to pending'},
             status=status.HTTP_200_OK
         )
+
