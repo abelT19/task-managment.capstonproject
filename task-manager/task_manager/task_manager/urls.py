@@ -16,12 +16,13 @@ urlpatterns = [
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('tasks.api_urls')),  # ✅ DRF API
+    path('api/', include('tasks.api_urls')),  
 ]
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),        # Django admin
-    path('api/', include('tasks.api_urls')),  # Your API endpoints
+    path('admin/', admin.site.urls),        
+    path('api/', include('tasks.api_urls')),  
 ]
+
