@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
 
-    'tasks',   # ✅ REQUIRED
+    'tasks',   
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -82,3 +82,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('tasks.urls')),  
 ]
+
